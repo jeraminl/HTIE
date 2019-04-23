@@ -20,11 +20,16 @@ def crop(x, y, offsetX=0, offsetY=0):
            command = ["convert", str(fullInputPath), "-crop", str(x)+'x'+str(y)+'+'+str(offsetX)+'+'+str(offsetY), str(fullOutputPath)]
            subprocess.check_output(command)
 
-def rotate():
-    pass
+def rotate(degree):
+   for filename in os.listdir(inputPath):
+       if filename.endswith(".jpg"):
+           fullInputPath = os.path.join(inputPath, filename)
+           fullOutputPath = os.path.join(outputPath, filename)
+           command = ["convert", str(fullInputPath), "-rotate", str(degree), str(fullOutputPath)]
+           subprocess.check_output(command)
 
 
 
 
 if __name__=="__main__":
-    crop(120,120,960,540)
+    rotate(45)
